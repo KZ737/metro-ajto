@@ -29,27 +29,27 @@ class VelvetDatasource {
     async loadResource(): Promise<MetroResource> {
         let cache = await this.forage.getItem<MetroResource>("cache");
         if (cache === null) {
-            cache = await this.fetchExternalResource();
+            cache = await this.fetchResource();
             await this.forage.setItem("cache", cache);
         }
         return cache;
     }
 
-    async fetchExternalResource(): Promise<MetroResource> {
-        const request: any = await axios.get("https://velvet.hu/assets/static/metrogen.json");
+    async fetchResource(): Promise<MetroResource> {
+        const request: any = await axios.get("metrogen.json");
         const data: MetroResource = {};
         for (let metro = 1; metro <= 4; metro++) {
-            const externalData: {
+            const Data: {
                 [key: string]: {
                     [key: string]: string[]
                 }
             } = request.data["M" + metro];
             const formattedData: DirectionResource = {};
-            Object.keys(externalData).forEach((direction: string) => {
-                const stations: { [key: string]: string[] } = externalData[direction];
+            Object.keys(Data).forEach((direction: string) => {
+                const stations: { [key: string]: string[] } = Data[direction];
                 formattedData[direction] = {}
                 Object.keys(stations).forEach(station => {
-                    const text = externalData[direction][station][0];
+                    const text = Data[direction][station][0];
                     const numbers = text.match(numberMatcher)?.map(match => parseInt(match.replace(".", "")));
                     if (numbers) {
                         const validDoors: number[] = [];
@@ -68,7 +68,7 @@ class VelvetDatasource {
     }
 
     async updateResource() {
-        await this.forage.setItem("cache", await this.fetchExternalResource());
+        await this.forage.setItem("cache", await this.fetchResource());
     }
 }
 

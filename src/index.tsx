@@ -13,8 +13,8 @@ ReactDOM.render(
 );
 
 VelvetDatasource.updateResource()
-    .then(() => console.log("Successfully updated velvet resource"))
-    .catch(() => console.log("Couldn't update velvet resource"));
+    .then(() => console.log("Successfully updated resource"))
+    .catch(() => console.log("Couldn't update resource"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
