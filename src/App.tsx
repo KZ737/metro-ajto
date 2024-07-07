@@ -44,8 +44,7 @@ const App: React.FunctionComponent = () => {
                 <DirectionSelector metro={metro} resources={resource}/>
             </main>
             <footer style={{textAlign: "center"}}>
-                Nézzétek meg az adatok tulajdonosának cikkét: <a style={{color: "orange"}}
-                                                                 href={"https://velvet.hu/bpma/2015/06/17/metro/"}>velvet.hu</a>
+                Ez az oldal <a style={{color: "orange"}} href={"https://github.com/skornel02"}>Stefán Kornél</a> és <a style={{color: "orange"}} href={"https://github.com/hgergely03"}>Horváth Gergely</a> <a style={{color: "orange"}} href={"https://metro.skornel02.hu/"}>honlapjának</a> a forkja, frissített állomásnevekkel. Adatok forrása: <a style={{color: "orange"}} href={"https://velvet.hu/bpma/2015/06/17/metro/"}>velvet.hu</a>.
             </footer>
             <ToastContainer/>
         </div>
